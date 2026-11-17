@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.app.IActivityManager
 import android.app.Service
 import android.app.UserSwitchObserver
-import android.content.BroadcastReceiver
 import android.database.ContentObserver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
 import android.provider.Settings
 import android.content.SharedPreferences
 import android.content.res.Configuration
@@ -23,7 +21,6 @@ import android.view.View
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams
 import android.view.animation.PathInterpolator
-import android.widget.Toast
 import androidx.appcompat.content.res.AppCompatResources
 import com.android.internal.policy.SystemBarUtils
 import com.libremobileos.sidebar.R

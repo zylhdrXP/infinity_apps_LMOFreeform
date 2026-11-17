@@ -2,7 +2,6 @@ package com.libremobileos.freeform.server.ui
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
-import android.animation.AnimatorSet
 import android.animation.ValueAnimator
 import android.view.animation.PathInterpolator
 
@@ -51,44 +50,5 @@ object FreeformAnimation {
         }
         if (moveX) moveXAnimator = animator
         else moveYAnimator = animator
-    }
-
-    fun toFullScreen(window: FreeformWindow, dur: Long = 350L, listener: Animator.AnimatorListener) {
-        val layout = window.freeformWindowView ?: window.freeformLayout ?: return
-        val rootView = window.freeformRootView ?: return
-
-        val animX = ValueAnimator.ofInt(window.windowParams.x, 0).apply {
-            addUpdateListener {
-                window.windowParams.x = it.animatedValue as Int
-            }
-        }
-        val animY = ValueAnimator.ofInt(window.windowParams.y, 0).apply {
-            addUpdateListener {
-                window.windowParams.y = it.animatedValue as Int
-            }
-        }
-        val animW = ValueAnimator.ofInt(window.freeformConfig.width, window.defaultDisplayWidth).apply {
-            addUpdateListener {
-                rootView.layoutParams = rootView.layoutParams.apply {
-                    width = it.animatedValue as Int
-                }
-            }
-        }
-        val animH = ValueAnimator.ofInt(window.freeformConfig.height, window.defaultDisplayHeight).apply {
-            addUpdateListener {
-                rootView.layoutParams = rootView.layoutParams.apply {
-                    height = it.animatedValue as Int
-                }
-                window.windowManager.updateViewLayout(layout, window.windowParams)
-            }
-        }
-
-        AnimatorSet().apply {
-            playTogether(animX, animY, animW, animH)
-            interpolator = SPATIAL_INTERPOLATOR
-            duration = dur
-            addListener(listener)
-            start()
-        }
     }
 }

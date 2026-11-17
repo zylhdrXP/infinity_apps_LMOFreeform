@@ -152,8 +152,7 @@
                 <View
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:background="@drawable/bar_corners_bg"
-                    android:tag="leftScale" />
+                    android:background="@drawable/bar_corners_bg" />
             </LinearLayout>
 
             <FrameLayout
@@ -216,13 +215,11 @@
                 <View
                     android:layout_width="4dp"
                     android:layout_height="4dp"
-                    android:background="@drawable/bar_corners_bg"
-                    android:tag="rightScale" />
+                    android:background="@drawable/bar_corners_bg" />
             </LinearLayout>
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline2"
-                android:tag="guideline2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -230,7 +227,6 @@
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline3"
-                android:tag="guideline3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

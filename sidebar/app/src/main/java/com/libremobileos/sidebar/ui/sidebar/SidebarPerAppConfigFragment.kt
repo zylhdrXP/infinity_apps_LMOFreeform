@@ -74,11 +74,6 @@ class SidebarPerAppConfigFragment : Fragment() {
 }
 
 @Composable
-fun SidebarPerAppConfigContent(onBack: () -> Unit = {}) {
-    SidebarPerAppConfigScreen(onBack = onBack)
-}
-
-@Composable
 fun SidebarPerAppConfigScreen(onBack: () -> Unit = {}) {
     val context = LocalContext.current
     val haptics = rememberExpressiveHaptics()

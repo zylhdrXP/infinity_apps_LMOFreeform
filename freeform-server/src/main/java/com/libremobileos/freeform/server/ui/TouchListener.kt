@@ -14,7 +14,6 @@ import android.view.ViewConfiguration
 import android.view.ViewGroup
 import com.libremobileos.freeform.server.LMOFreeformServiceHolder
 import kotlin.math.abs
-import kotlin.math.ceil
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -70,8 +69,6 @@ sealed interface PillAction {
     object CloseWindow : PillAction
     object EnterFullscreen : PillAction
     object Back : PillAction
-    object ShowControls : PillAction
-    object ShowMenu : PillAction
 }
 
 data class PillAppearance(
@@ -121,7 +118,6 @@ class PillGestureController(
     private var startX = 0f
     private var startY = 0f
     private var activeAction: PillAction? = null
-    private var baseWindowWidth = 0
     private var baseWindowHeight = 0
     private var velocityTracker: VelocityTracker? = null
 
@@ -243,7 +239,6 @@ class PillGestureController(
 
     private fun captureBaseWindowSize() {
         val layout = window.freeformLayout ?: return
-        baseWindowWidth = layout.width
         baseWindowHeight = layout.height
     }
 
@@ -300,8 +295,6 @@ class PillGestureController(
                 animateBackToIdle()
                 window.goBack()
             }
-            PillAction.ShowControls -> animateBackToIdle()
-            PillAction.ShowMenu -> animateBackToIdle()
         }
     }
 

@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable
 import android.graphics.PixelFormat
 import android.graphics.Rect
 import android.graphics.SurfaceTexture
-import android.os.Build
 import android.os.Handler
 import android.provider.Settings
 import android.util.Slog
@@ -65,7 +64,6 @@ class FreeformWindow(
     private var displayId = Display.INVALID_DISPLAY
     var defaultDisplayWidth = context.resources.displayMetrics.widthPixels
     var defaultDisplayHeight = context.resources.displayMetrics.heightPixels
-    var defaultDisplayRotation = context.display.rotation
     private val hangUpGestureListener = HangUpGestureListener(this)
     private val defaultDisplayInfo = DisplayInfo()
     private val destroyRunnable = Runnable { destroy("destroyRunnable", true) }
@@ -79,7 +77,6 @@ class FreeformWindow(
             dlog(TAG, "onRotationChanged($rotation)")
             defaultDisplayWidth = context.resources.displayMetrics.widthPixels
             defaultDisplayHeight = context.resources.displayMetrics.heightPixels
-            defaultDisplayRotation = context.display.rotation
             measureSize()
             handler.post {
                 val layout = freeformWindowView ?: freeformLayout ?: return@post
@@ -858,10 +855,6 @@ class FreeformWindow(
 
         val mode = if (isLandscape) "landscape (left side)" else "portrait (center)"
         dlog(TAG, "Orientation-aware positioning: $mode, windowX=${windowParams.x}, windowY=${windowParams.y}, screenSize=${defaultDisplayWidth}x${defaultDisplayHeight}")
-    }
-
-    private fun setDefaultPosition() {
-        setSidebarAwarePosition()
     }
 
     private val isGestureMode: Boolean
